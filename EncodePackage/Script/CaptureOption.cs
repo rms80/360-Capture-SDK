@@ -5,7 +5,12 @@ using System;
 
 
 namespace FBCapture {
-    public class CaptureOption : MonoBehaviour {
+
+    public class CaptureOption : MonoBehaviour
+    {
+        public static CaptureOption Active = null;
+
+
         [Header("Capture Option")]
         public bool doSurroundCaptureOption;
 
@@ -123,29 +128,56 @@ namespace FBCapture {
         }
 
         void Update() {
+            Active = this;
+
             // Check in real time if capture option is changed if there is no encoding session happening at the moment
             doSurroundCapture = doSurroundCaptureOption;
             liveStreaming = liveStreamingOption;
             liveStreamServerUrl = streamKeyOption;
 
-            // 360 screen capturing
-            if (Input.GetKeyDown(screenShotKey) && currDoSurroundCapture) {
+            if (Input.GetKeyUp(screenShotKey))
+                CaptureScreenshot();
+            else if (Input.GetKeyUp(encodingStartShotKey))
+                StartCaptureVideo();
+            else if (Input.GetKeyUp(encodingStopShotKey))
+                StopCaptureVideo();
+        }
+
+
+
+        public void CaptureScreenshot()
+        {
+            if (currDoSurroundCapture) {
                 surroundCapture.TakeScreenshot(screenShotWidth, screenShotHeight, ScreenShotName(screenShotWidth, screenShotHeight));
-            } else if (Input.GetKeyDown(encodingStartShotKey) && currDoSurroundCapture) {
+            }
+            if (!currDoSurroundCapture) {
+                nonSurroundCapture.TakeScreenshot(screenShotWidth, screenShotHeight, ScreenShotName(screenShotWidth, screenShotHeight));
+            }
+        }
+
+
+        public void StartCaptureVideo()
+        {
+            if (currDoSurroundCapture) {
                 surroundCapture.StartEncodingVideo(videoWidth, videoHeight, fps, bitrate, MovieName(videoWidth, videoHeight));
-            } else if (Input.GetKeyDown(encodingStopShotKey) && currDoSurroundCapture) {
+            }
+            if (!currDoSurroundCapture) {
+                nonSurroundCapture.StartEncodingVideo(videoWidth, videoHeight, fps, bitrate, MovieName(videoWidth, videoHeight));
+            }
+        }
+
+
+        public void StopCaptureVideo()
+        {
+            if (currDoSurroundCapture) {
                 surroundCapture.StopEncodingVideo();
             }
-
-            // 2D screen capturing
-            if (Input.GetKeyDown(screenShotKey) && !currDoSurroundCapture) {
-                nonSurroundCapture.TakeScreenshot(screenShotWidth, screenShotHeight, ScreenShotName(screenShotWidth, screenShotHeight));
-            } else if (Input.GetKeyDown(encodingStartShotKey) && !currDoSurroundCapture) {
-                nonSurroundCapture.StartEncodingVideo(videoWidth, videoHeight, fps, bitrate, MovieName(videoWidth, videoHeight));
-            } else if (Input.GetKeyDown(encodingStopShotKey) && !currDoSurroundCapture) {
+            if (!currDoSurroundCapture) {
                 nonSurroundCapture.StopEncodingVideo();
             }
         }
+
+
 
         string StreamServerURL() {
             if (streamUrlOption.EndsWith("/")) {
