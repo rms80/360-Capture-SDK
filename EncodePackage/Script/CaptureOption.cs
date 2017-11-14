@@ -38,8 +38,12 @@ namespace FBCapture {
         private bool currDoSurroundCapture;
         private bool doSurroundCapture {
             set {
-                if (currDoSurroundCapture == value)
+                if (currDoSurroundCapture == value &&
+                    surroundCapture.enabled == currDoSurroundCapture &&
+                    nonSurroundCapture.enabled == (!currDoSurroundCapture) ) 
+                { 
                     return;
+                }
 
                 if (!surroundCapture.releasedResources || !nonSurroundCapture.releasedResources) {
                     Debug.Log("Cannot change capture option while capture encoding is happening.");
