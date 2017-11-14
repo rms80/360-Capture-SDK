@@ -53,14 +53,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012166519396}
-  m_LocalRotation: {x: 0.19908215, y: -0, z: -0, w: 0.97998285}
-  m_LocalPosition: {x: -2.55, y: 11.8, z: 7.6}
+  m_LocalRotation: {x: 0.15304591, y: -0.6903456, z: 0.15304591, w: 0.6903456}
+  m_LocalPosition: {x: 1, y: 1.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010354930524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.933, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: -90, z: 0}
 --- !u!4 &4000010354930524
 Transform:
   m_ObjectHideFlags: 1
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011322378634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.16, y: -4.5, z: -24.15}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000010293089180}
@@ -150,7 +150,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011322378634}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &114000010226996752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,7 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f808e2769793b749badcc43e99a3f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flippingTextureShader: {fileID: 0}
+  flippingTextureShader: {fileID: 4800000, guid: bd7389f754b8a4646a21ecfdbc30a759,
+    type: 3}
   sceneCamera: {fileID: 20000011549310018}
   releasedResources: 1
 --- !u!114 &114000011591090928
