@@ -187,10 +187,11 @@ namespace FBCapture {
         }
 
         string MovieName(int width, int height) {
-            return string.Format("{0}/movie_{1}x{2}_{3}.h264",
+            string basename = currDoSurroundCapture ? "movie360" : "movie";
+            return string.Format("{0}/{4}_{1}x{2}_{3}.h264",
                                 outputPath,
                                 width, height,
-                                DateTime.Now.ToString("yyyy-MM-dd hh_mm_ss"));
+                                DateTime.Now.ToString("yyyy-MM-dd hh_mm_ss"), basename);
         }
 
         string ScreenShotName(int width, int height) {
