@@ -337,6 +337,10 @@ namespace FBCapture {
                     OnError(ErrorType.ENCODE_INVALID_RESOLUTION, null);
                     return;
                 }
+
+                // [RMS] update capture size (which always allocates new rendertexture...)
+                SetOutputSize(width, height);
+
             } else {
                 Debug.Log("Encoding is already started");
                 return;
